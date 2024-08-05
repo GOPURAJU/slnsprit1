@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    table{
+        width: 800px;
+        margin-left: 200px;
+        margin-top: 200px;
+        border-collapse: collapse;
+    }
+
+
+
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .form-container div {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container label {
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid  teal;;
+            border-radius: 4px;
+        }
+        
+        
+        
+       
+
+        a{
+            width: 150px;
+            height: 30px;
+        }
+
+   
+    </style>
+<body>
+    <table border="3">
+            <th>id</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Action</th>
+            
+
+            
+        </tr>
+        {% for x in data %}
+        <tr>
+            <td>{{ x.id }}</td>
+            <td>{{ x.full_name }}</td>
+            <td>{{ x.email_address }}</td>
+            <td>{{ x.phone_number }}</td>
+            <td><a href="{% url 'update' x.pk %}" class="btn btn-primary" style="border-radius: 10px;">Update</a></td>
+            <td><a href="{% url 'creditappli_show' x.pk %}" class="btn btn-primary"style="border-radius: 10px;">view application</a></td>
+            <td><a href="{% url 'creditdoc_show' x.pk %}" class="btn btn-primary"style="border-radius: 10px;">view documents</a></td> 
+
+
+        </tr>
+            
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

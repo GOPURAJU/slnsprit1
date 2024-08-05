@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applicant Document Form</title>
+    <script>
+        function updateFields() {
+            // Get the selected category from the radio buttons
+            var selectedCategory = document.querySelector('input[name="category"]:checked');
+            var selectedCategoryValue = selectedCategory ? selectedCategory.value : '';
+
+            // Hide all field groups initially
+            document.querySelectorAll('.field-group').forEach(group => group.style.display = 'none');
+
+            // Show common fields and the selected category fields
+            document.querySelectorAll('.field-group.Common, .field-group.Co-Applicant').forEach(group => group.style.display = 'block');
+            if (selectedCategoryValue) {
+                document.querySelectorAll(`.field-group.${selectedCategoryValue}`).forEach(group => group.style.display = 'block');
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .field-group {
+            margin-bottom: 20px;
+        }
+        .field-group h2 {
+            margin-top: 0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .grid-item {
+            margin-bottom: 10px;
+        }
+        .grid-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .grid-item label.required::after {
+            content: "*";
+            color: red;
+        }
+        .grid-item input[type="file"],
+        .grid-item input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .grid-item input[type="radio"] {
+            margin-right: 10px;
+        }
+        .grid-item button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .grid-item button:hover {
+            background-color: #164e8b;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% if loan_type %}
+    <h1>a:{{loan_type}}</h1>
+    {% endif %}
+    {% if incomesource %}
+    <h1>a:{{incomesource}}</h1>
+    {% endif %}
+
+    <h1 style="text-align: center;">Applicant Document Form</h1>
+    {% if random_number %}
+        <p><strong>Application ID:</strong> {{ random_number }}</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="field-group Common">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_adhar_card_front" class="required">Adhar Card Front:</label>
+                    {{ form.adhar_card_front }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_adhar_card_back" class="required">Adhar Card Back:</label>
+                    {{ form.adhar_card_back }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_pan_card" class="required">PAN Card:</label>
+                    {{ form.pan_card }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_customer_photo" class="required">Customer Photo:</label>
+                    {{ form.customer_photo }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_home_plot_photo_1" class="required">Home/Plot Photo 1:</label>
+                    {{ form.home_plot_photo_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_home_plot_photo_2" class="required">Home/Plot Photo 2:</label>
+                    {{ form.home_plot_photo_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_home_plot_photo_3" class="required">Home/Plot Photo 3:</label>
+                    {{ form.home_plot_photo_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_home_plot_photo_4" class="required">Home/Plot Photo 4:</label>
+                    {{ form.home_plot_photo_4 }}
+                </div>
+                {% if incomesource == 'Job' %}
+                <div class="grid-item">
+                    <label for="id_latest_3_months_pay_slips_1" class="required">Latest 3 Months Pay Slips 1:</label>
+                    {{ form.latest_3_months_payslips_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_months_pay_slips_2">Latest 3 Months Pay Slips 2:</label>
+                    {{ form.latest_3_months_payslips_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_months_pay_slips_3" class="required">Latest 3 Months Pay Slips 3:</label>
+                    {{ form.latest_3_months_payslips_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_months_bank_statement" class="required">Latest 3 Months Bank Statement:</label>
+                    {{ form.latest_3_months_banked_statement }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_employee_id_card" class="required">Employee ID Card:</label>
+                    {{ form.employee_id_card }}
+                </div>
+            </div>
+        </div>
+   {% elif incomesource == 'Business' %}
+
+        <div class="field-group Business" style="display:none;">
+            <h2>Business Fields</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_business_proof_1" class="required">Business Proof 1:</label>
+                    {{ form.business_proof_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_business_proof_2" class="required">Business Proof 2:</label>
+                    {{ form.business_proof_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_12_months_banked_statement" class="required">Latest 12 Months Bank Statement:</label>
+                    {{ form.latest_12_months_banked_statement }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_business_office_photo" class="required">Business Office Photo:</label>
+                    {{ form.business_office_photo }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_yrs_itr_1" class="required">Latest 3 Years ITR 1:</label>
+                    {{ form.latest_3_yrs_itr_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_yrs_itr_2" class="required">Latest 3 Years ITR 2:</label>
+                    {{ form.latest_3_yrs_itr_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_latest_3_yrs_itr_3" class="required">Latest 3 Years ITR 3:</label>
+                    {{ form.latest_3_yrs_itr_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_current_address_proof" class="required">Current Address Proof:</label>
+                    {{ form.current_address_proof }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        
+
+        
+        {% if loan_type  == 'HLBT' %}
+
+        <div class="field-group HLBT" style="display:none;">
+            <h2>HLBT Fields</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_existing_loan_statement" class="required">Existing Loan Statement:</label>
+                    {{ form.existing_loan_statement }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_1" class="required">Other Documents 1:</label>
+                    {{ form.other_documents_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_2" class="required">Other Documents 2:</label>
+                    {{ form.other_documents_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_3" class="required">Other Documents 3:</label>
+                    {{ form.other_documents_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_4" class="required">Other Documents 4:</label>
+                    {{ form.other_documents_4 }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="field-group Co-Applicant" style="display:block;">
+            <h2><center>Co-Applicant Documents</center></h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_co_adhar_card_front" class="required">Co-Applicant Aadhar Card Front:</label>
+                    {{ form.co_adhar_card_front }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_co_adhar_card_back" class="required">Co-Applicant Aadhar Card Back:</label>
+                    {{ form.co_adhar_card_back }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_co_pan_card" class="required">Co-Applicant PAN Card:</label>
+                    {{ form.co_pan_card }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_co_selfie_photo" class="required">Co-Applicant Selfie Photo:</label>
+                    {{ form.co_selfie_photo }}
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

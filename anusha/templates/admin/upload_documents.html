@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Document Form</title>
+    <script>
+        function updateFields() {
+            var categories = document.querySelectorAll('input[name="category"]:checked');
+            var selectedCategories = Array.from(categories).map(checkbox => checkbox.value);
+            document.querySelectorAll('.field-group').forEach(group => group.style.display = 'none');
+            document.querySelectorAll('.field-group.Common').forEach(group => group.style.display = 'block');
+            selectedCategories.forEach(value => {
+                document.querySelectorAll(`.field-group.${value}`).forEach(group => group.style.display = 'block');
+            });
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .field-group {
+            margin-bottom: 20px;
+        }
+        .field-group h2 {
+            margin-top: 0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .grid-item {
+            margin-bottom: 10px;
+        }
+        .grid-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .grid-item label.required::after {
+            content: "*";
+            color: red;
+        }
+        .grid-item input[type="file"],
+        .grid-item input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .grid-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .grid-item button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .grid-item button:hover {
+            background-color: #164e8b;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .field-group.Co-Applicant h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Applicant Document Form</h1>
+    {% if random_number %}
+        <p><strong>Application ID:</strong> {{ random_number }}</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="field-group Common">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_car_rc_front" class="required">Car Rc Front:</label>
+                    {{ form.car_rc_front }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_car_rc_back" class="required">Car Rc Back:</label>
+                    {{ form.car_rc_back }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_aadhar_card_front" class="required">Aadhar Card Front:</label>
+                    {{ form.aadhar_card_front }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_aadhar_card_back" class="required">Aadhar Card Back:</label>
+                    {{ form.aadhar_card_back }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_pan_card" class="required">PAN Card:</label>
+                    {{ form.pan_card }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_customer_photo" class="required">Customer Photo:</label>
+                    {{ form.customer_photo }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_current_address_proof" class="required">Current Address Proof:</label>
+                    {{ form.current_address_proof }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_existing_loan_statement" class="required">Existing Loan Statement:</label>
+                    {{ form.existing_loan_statement }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_1" class="required">Other Documents 1:</label>
+                    {{ form.other_document_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_2" class="required">Other Documents 2:</label>
+                    {{ form.other_document_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_3" class="required">Other Documents 3:</label>
+                    {{ form.other_document_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_other_documents_4" class="required">Other Documents 4:</label>
+                    {{ form.other_document_4 }}
+                </div>
+            </div>
+        </div>
+
+        <div class="field-group job" style="display:none;">
+            <h2>Job Fields</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_payslip_1" class="required">Latest 3 Months Pay Slips 1:</label>
+                    {{ form.payslip_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_payslip_2">Latest 3 Months Pay Slips 2:</label>
+                    {{ form.payslip_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_payslip_3" class="required">Latest 3 Months Pay Slips 3:</label>
+                    {{ form.payslip_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_bank_statement_3_months" class="required">Latest 3 Months Bank Statement:</label>
+                    {{ form.bank_statement_3_months }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_employee_id_card" class="required">Employee ID Card:</label>
+                    {{ form.employee_id_card }}
+                </div>
+            </div>
+        </div>
+
+        <div class="field-group Business" style="display:none;">
+            <h2>Business Fields</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="id_business_proof_1" class="required">Business Proof 1:</label>
+                    {{ form.business_proof_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_business_proof_2" class="required">Business Proof 2:</label>
+                    {{ form.business_proof_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_bank_statement_12_months" class="required">Latest 12 Months Bank Statement:</label>
+                    {{ form.bank_statement_12_months }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_business_office_photo" class="required">Business Office Photo:</label>
+                    {{ form.business_office_photo }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_itr_1" class="required">Latest 3 Years ITR 1:</label>
+                    {{ form.itr_1 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_itr_2" class="required">Latest 3 Years ITR 2:</label>
+                    {{ form.itr_2 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_itr_3" class="required">Latest 3 Years ITR 3:</label>
+                    {{ form.itr_3 }}
+                </div>
+                <div class="grid-item">
+                    <label for="id_current_address_proof" class="required">Current Address Proof:</label>
+                    {{ form.current_address_proof }}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="category_job">
+                    <input type="checkbox" id="category_job" name="category" value="job" onchange="updateFields()"> Job
+                </label>
+            </div>
+            <div class="grid-item">
+                <label for="category_business">
+                    <input type="checkbox" id="category_business" name="category" value="Business" onchange="updateFields()"> Business
+                </label>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

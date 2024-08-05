@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Uploaded Images</title>
+</head>
+<body>
+    <h1>Uploaded Documents</h1>
+    {% if documents %}
+        <ul>
+            {% for document in documents %}
+                <li>
+                    <img src="{{ document.image.url }}" alt="Uploaded Image" style="max-width: 300px;">
+                    <p>{{ document.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents uploaded.</p>
+    {% endif %}
+</body>
+</html>

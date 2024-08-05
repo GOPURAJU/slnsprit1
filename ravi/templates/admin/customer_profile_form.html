@@ -1,0 +1,500 @@
+<<<<<<< HEAD
+<h1>welcome</h1>
+<form action="" method="post">
+    {{ form.as_p }}
+</form>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .form-container div {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container label {
+            margin-bottom: 5px;
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+        .form-container button {
+            grid-column: 2; /* Center the button */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px; /* Add margin top for spacing */
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .section-header {
+            grid-column: 1 / -1;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .required-label::after {
+            content: '*';
+            color: red;
+            margin-left: 5px;
+        }
+        .invalid-feedback {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .form-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .form-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+    <script>
+        function showIncomeSourceFields(selectElement) {
+            var jobFields = document.querySelectorAll('.job-fields');
+            var businessFields = document.querySelectorAll('.business-fields');
+            
+            jobFields.forEach(function(field) {
+                field.style.display = 'none';
+            });
+            businessFields.forEach(function(field) {
+                field.style.display = 'none';
+            });
+
+            if (selectElement.value === 'Job') {
+                jobFields.forEach(function(field) {
+                    field.style.display = 'block';
+                });
+            } else if (selectElement.value === 'Business') {
+                businessFields.forEach(function(field) {
+                    field.style.display = 'block';
+                });
+            }
+        }
+
+        function showConditionalFields() {
+            var existingLoanCheckbox = document.querySelector("input[name='existing_loan']");
+            var gstCertificateCheckbox = document.querySelector("input[name='gst_certificate']");
+            var existingLoanFields = document.querySelectorAll('.existing-loan-fields');
+            var gstNumberField = document.querySelector('.gst-number-field');
+            
+            existingLoanFields.forEach(function(field) {
+                field.style.display = existingLoanCheckbox.checked ? 'block' : 'none';
+            });
+            gstNumberField.style.display = gstCertificateCheckbox.checked ? 'block' : 'none';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var incomeSourceSelect = document.querySelector("select[name='income_source']");
+            incomeSourceSelect.addEventListener("change", function() {
+                showIncomeSourceFields(incomeSourceSelect);
+            });
+            showIncomeSourceFields(incomeSourceSelect);
+
+            var checkboxes = document.querySelectorAll("input[type='checkbox']");
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", showConditionalFields);
+            });
+            showConditionalFields(); // Initialize visibility based on initial state
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_first_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_last_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_mobile_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+    var alphanumericField = document.getElementById('id_pan_card_number'); 
+    alphanumericField.addEventListener('input', function() {
+        var value = this.value.toUpperCase(); 
+        this.value = value.replace(/[^A-Z0-9]/g, ''); 
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_aadhar_card_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_current_address_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_aadhar_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_running_emis_per_month'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_net_salary_per_month'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_company_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_total_job_experience'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_office_address_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_net_income_per_month'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_business_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var alphanumericField = document.getElementById('id_gst_number'); 
+    alphanumericField.addEventListener('input', function() {
+        var value = this.value.toUpperCase(); 
+        this.value = value.replace(/[^A-Z0-9]/g, ''); 
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_mother_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_father_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_nature_of_business');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_turnover_per_year'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_business_address_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_house_plot_purchase_value'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_required_loan_amount'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_existing_loan_amount'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_ref1_mobile_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_ref2_mobile_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+    
+              document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_ref1_person_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_ref2_person_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_first_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_last_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_mobile_number');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^0-9]/g, ''); 
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_relationship');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, ''); 
+      });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_occupation');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');
+      });
+});
+document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_coapplicant_net_income_per_month');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^0-9]/g, '');
+      });
+});
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center;">Home Loan Form</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-container">
+            {% for field in form %}
+                {% if field.name == 'income_source' %}
+                    <div>
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'coapplicant' %}
+                    <div class="section-header">Co-Applicant Details</div>
+                {% elif field.name in 'net_salary_per_month company_name company_type job_joining_date job_location total_job_experience work_email office_address_pincode' %}
+                    <div class="job-fields hidden">
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name in 'net_income_per_month business_name business_type business_establishment_date gst_certificate gst_number nature_of_business turnover_per_year business_address_pincode' %}
+                    <div class="business-fields hidden">
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'existing_loan' %}
+                    <div>
+                        <label for="{{ field.id }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'existing_loan_bank_nbfc_name' or field.name == 'existing_loan_amount' %}
+                    <div class="existing-loan-fields hidden">
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'gst_certificate' %}
+                    <div>
+                        <label for="{{ field.id }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'gst_number' %}
+                    <div class="gst-number-field hidden">
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div>
+                        <label for="{{ field.id }}" class="required-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
+>>>>>>> origin/master

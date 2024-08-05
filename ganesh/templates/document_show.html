@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Documents</title>
+</head>
+<body>
+    <h1>Uploaded Documents</h1>
+    <ul>
+        {% for document in documents %}
+            <li>
+                <a href="{{ document..url }}" target="_blank">{{ document_upload.name }}</a>
+            </li>
+        {% empty %}
+            <li>No documents uploaded yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'creditdoc_add' instance_id=instance_id %}">Add New Document</a>
+</body>
+</html>

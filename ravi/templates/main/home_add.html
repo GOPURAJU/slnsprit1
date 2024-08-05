@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Detail Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+        }
+        .form-container {
+            max-width: 800px; 
+            margin: 0 auto; 
+            background-color: #fff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+        }
+        .form-container h1 {
+            grid-column: 1 / -1; 
+            text-align: center;
+            margin-bottom: 20px; 
+        }
+        .form-group {
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+        }
+        .form-group label {
+            font-weight: bold; 
+        }
+        .form-group label.required::after {
+            content: '*';
+            color: red;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; 
+            padding: 10px; 
+            font-size: 14px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+        }
+        .form-group .invalid-feedback {
+            color: red; 
+            font-size: 12px; 
+            margin-top: 5px; 
+        }
+        .form-container button {
+            grid-column: 1 / -1; 
+            width: auto; 
+            padding: 10px; 
+            font-size: 16px; 
+            border: none; 
+            border-radius: 4px; 
+            background-color: #007BFF;
+            color: white; 
+            cursor: pointer; 
+        }
+        .form-container button:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_first_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_last_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_father_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_company_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_ref1_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+          var firstNameField = document.getElementById('id_ref2_name');
+          firstNameField.addEventListener('input', function() {
+              var value = this.value;
+              this.value = value.replace(/[^a-zA-Z]/g, '');  
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_mobile_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+             
+              document.addEventListener('DOMContentLoaded', function() {
+    var alphanumericField = document.getElementById('id_pan_card_number'); 
+    alphanumericField.addEventListener('input', function() {
+        var value = this.value.toUpperCase(); 
+        this.value = value.replace(/[^A-Z0-9]/g, ''); 
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var alphanumericField = document.getElementById('id_gst_number'); 
+    alphanumericField.addEventListener('input', function() {
+        var value = this.value.toUpperCase(); 
+        this.value = value.replace(/[^A-Z0-9]/g, ''); 
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_aadhar_card_number'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+
+document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_current_address_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_aadhar_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_running_emis'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_net_salary'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+        
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_total_job_experience'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_office_address_pincode'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+    
+            document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_required_loan_amount'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+        document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_ref1_mobile'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+              document.addEventListener('DOMContentLoaded', function() {
+           var numberField = document.getElementById('id_ref2_mobile'); 
+           numberField.addEventListener('input', function() {
+            var value = this.value;
+           this.value = value.replace(/[^0-9]/g, '');
+         });
+              });
+    
+             
+    </script>
+</head>
+<body>
+    <h1><center>Personal Detail Form</center></h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-container">
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.field.required %}
+                        <label class="required">{{ field.label_tag }}</label>
+                    {% else %}
+                        <label>{{ field.label_tag }}</label>
+                    {% endif %}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script>
+          function toggleFields() {
+              const incomeSource = document.getElementById('id_income_source').value;
+              const jobFields = document.getElementById('job-fields');
+              const businessFields = document.getElementById('business-fields');
+      
+              if (incomeSource === 'Job') {
+                  jobFields.style.display = 'block';
+                  businessFields.style.display = 'none';
+              } else {
+                  jobFields.style.display = 'none';
+                  businessFields.style.display = 'block';
+              }
+          }
+          document.addEventListener('DOMContentLoaded', function() {
+              toggleFields(); // Initial state setup
+              document.getElementById('id_income_source').addEventListener('change', toggleFields); // Add onchange event
+      
+              // Add onchange event for GST certificate
+              // Set initial requirement state for GST number
+          });
+      </script>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const gstNumberField = document.getElementById('gst-number-field');
+              const gstCertificateCheckbox = document.getElementById('id_gst_certificate');
+      
+              function toggleGstNumberField() {
+                  if (gstCertificateCheckbox.checked) {
+                      gstNumberField.style.display = 'block';
+                      gstNumberField.setAttribute('required', 'required'); // Optionally make it required
+                  } else {
+                      gstNumberField.style.display = 'none';
+                      gstNumberField.removeAttribute('required');
+                  }
+              }
+      
+              // Initial state setup
+              toggleGstNumberField();
+      
+              // Add change event listener to the checkbox
+              gstCertificateCheckbox.addEventListener('change', toggleGstNumberField);
+          });
+      </script>
+      <script>
+          document.addEventListener('DOMContentLoaded',function(){
+              const existingloan=document.getElementById('existing_loan_amount');
+              const existingloandoc=document.getElementById('id_existing_loan');
+      
+              function toggleexistingfield(){
+                  if(existingloandoc.checked){
+                      existingloan.style.display='block';
+      
+                  }
+                  else{
+                      existingloan.style.display='none'
+                  }
+              }
+              toggleexistingfield()
+              existingloandoc.addEventListener('change',toggleexistingfield)
+          })
+      </script>
+      
+      
+</body>
+</html>

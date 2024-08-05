@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Education Loan Application</title>
+    <style>
+        button:hover {
+            color: #ffff;
+            background-color: rgba(0, 0, 0, 0.486);
+        }
+
+        body {
+            background-color: darkcyan;
+            color: white;
+        }
+
+        .required::after {
+            content: '*';
+            color: red;
+            margin-left: 5px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h4 {
+            margin-bottom: 15px;
+        }
+    </style>
+    <script>
+        // Function to toggle the display of co-applicant fields based on the selected co-applicant type
+        function toggleField() {
+            const coapplicanttype = document.getElementById('id_co_applicant_type').value;
+            const salaryFields = document.getElementById('Salaried_employee-Field');
+            const selfFields = document.getElementById('Self_Employeed-Field');
+
+            if (coapplicanttype === 'SALARIEDEMPLOYEE') {
+                salaryFields.style.display = 'block';
+                selfFields.style.display = 'none';
+            } else {
+                salaryFields.style.display = 'none';
+                selfFields.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleField();  // Initial state setup
+
+            // Event listener for co-applicant type change
+            document.getElementById('id_co_applicant_type').addEventListener('change', toggleField);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Education Loan Application Form</h1>
+        <!-- {% if random_number %}
+            <p><strong>Random Number:</strong> {{ random_number }}</p>
+        {% endif %} -->
+        
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Row 1 - Personal Details -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_student_name" class="required">Student Name</label>
+                        {{ form.student_name }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_mail_id" class="required">Mail Id</label>
+                        {{ form.mail_id }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_mobile_number" class="required">Mobile Number</label>
+                        {{ form.mobile_number }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2 - Course and University Details -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_country" class="required">Country</label>
+                        {{ form.country }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_course" class="required">Course</label>
+                        {{ form.course }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_university_name" class="required">University Name</label>
+                        {{ form.university_name }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3 - Score Details -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_score_card" class="required">Score Card</label>
+                        {{ form.score_card }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_GRE_score" class="required">GRE Score</label>
+                        {{ form.GRE_score }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_IELTS_score" class="required">IELTS Score</label>
+                        {{ form.IELTS_score }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4 - Additional Scores -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_TOEFL_score" class="required">TOEFL Score</label>
+                        {{ form.TOEFL_score }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_Duolingo_score" class="required">Duolingo Score</label>
+                        {{ form.Duolingo_score }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_PTE_score" class="required">PTE Score</label>
+                        {{ form.PTE_score }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 5 - Experience and Financial Details -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_student_work_experience" class="required">Student Work Experience</label>
+                        {{ form.student_work_experience }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_cibil_score" class="required">CIBIL Score</label>
+                        {{ form.cibil_score }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_loan_required" class="required">Loan Required</label>
+                        {{ form.loan_required }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 6 - Backlogs and Residence Locations -->
+            <div class="form-section row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_backlogs" class="required">Backlogs</label>
+                        {{ form.backlogs }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_residence_location" class="required">Residence Location</label>
+                        {{ form.residence_location }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_permanent_location" class="required">Permanent Location</label>
+                        {{ form.permanent_location }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 7 - Co-Applicant Type and Details -->
+            <div class="form-section row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="id_co_applicant_type" class="required">Co-Applicant Type</label>
+                        {{ form.co_applicant_type }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Co-Applicant Fields -->
+            <div id="Salaried_employee-Field" style="display: none;">
+                <h4>Salaried Employee</h4>
+                <div class="form-section row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_parent_name" class="required">Co-Applicant Parent Name</label>
+                            {{ form.co_applicant_parent_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_company_name" class="required">Co-Applicant Company Name</label>
+                            {{ form.co_applicant_company_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_salaried_designation" class="required">Co-Applicant Salaried Designation</label>
+                            {{ form.co_applicant_salaried_designation }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_net_pay" class="required">Co-Applicant Net Pay</label>
+                            {{ form.co_applicant_salaried_net_pay }}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_salaried_cibil_score" class="required">Co-Applicant Salaried CIBIL Score</label>
+                            {{ form.co_applicant_salaried_cibil_score }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Self_Employeed-Field" style="display: none;">
+                <h4>Self-Employed</h4>
+                <div class="form-section row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_self_business_name" class="required">Co-Applicant Self Business Name</label>
+                            {{ form.co_applicant_self_employed_business_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_self_itr_mandatory" class="required">Co-Applicant Self ITR Mandatory</label>
+                            {{ form.co_applicant_self_employed_itr_mandatory }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_co_applicant_self_employed_business_licence" class="required">Co-Applicant Self Employed Business License</label>
+                            {{ form.co_applicant_self_employed_business_licence }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 8 - Property Details -->
+            <div class="form-section row">
+                <!-- <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_property_details" class="required">Co-Applicant Property Details</label>
+                        {{ form.co_applicant_property_details }}
+                    </div>
+                </div> -->
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_property_location" class="required">Property Location</label>
+                        {{ form.property_location }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_property_type" class="required">Property Type</label>
+                        {{ form.property_type }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_property_market_value" class="required">Property Market Value</label>
+                        {{ form.property_market_value }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 9 - Market and Govt Value -->
+            <div class="form-section row">
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="id_property_govt_value" class="required">Property Government Value</label>
+                        {{ form.property_govt_value }}
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block" style="border-radius: 30px; height: 50px;">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
